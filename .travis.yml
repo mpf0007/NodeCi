@@ -1,0 +1,38 @@
+#define our programming language
+language: "node_js"
+
+#define our programming language version
+node_js:
+  - "12.19.0"
+
+#define our OS version of server
+dist: "trusty"
+
+#define our services that we need to run our program
+services:
+  - "mongodb"
+  - "redis"
+
+#define our code environment
+env:
+  - "NODE_ENV=ci"
+  - "PORT=3000"
+
+#define a cash to boost our ci progres like caching node_modules
+cache:
+  directories:
+    - "node_modules"
+    - "client/node_modules"
+
+#define commands for run our program
+install:
+  - "npm install"
+  - "npm run build"
+
+# script is similar to install
+# nohub means  => (no hang up) if the shell is closed , dont kill anything this command  creates
+# & means => run this command in a subshell (background)
+script:
+  - "nohub npm run start &"
+  - "sleep 3"
+  - "npm run test"
