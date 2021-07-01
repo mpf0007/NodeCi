@@ -34,14 +34,14 @@ describe('when logged in', async () => {
             await page.click('form button')
         });
 
-        test('submitting takes user to review screen', () => {
+        test('submitting takes user to review screen', async () => {
 
             const text = await page.getContentsOf('h5');
 
             expect(text).toEqual('Please confirm your entries');
         });
 
-        test('submitting then saving adds blogs to index page', () => {
+        test('submitting then saving adds blogs to index page', async () => {
 
             await page.click('button.green')
             await page.waitFor('.card')
@@ -62,7 +62,7 @@ describe('when logged in', async () => {
             await page.click('form button');
         })
 
-        test('the form shows error message', () => {
+        test('the form shows error message', async () => {
             const titleError = await page.getContentsOf('.title .red-text')
             const contentError = await page.getContentsOf('.content .red-text')
 
