@@ -3,7 +3,7 @@ const sessionFactory = require('../factories/sessionFactory.js')
 const userFactory = require('../factories/userFactory.js')
 
 class CustomPage {
-    static build() {
+    static async build() {
 
         const browser = await puppeteer.lunch({
             headless: true,
@@ -24,7 +24,7 @@ class CustomPage {
         this.page = page
     }
 
-    async login() {
+    async async login() {
         const user = await userFactory()
         const { session, sig } = sessionFactory(user);
 
